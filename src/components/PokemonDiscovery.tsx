@@ -19,7 +19,8 @@ export default function PokemonDiscovery() {
   } = useInfiniteQuery({
     queryKey: ["pokemon"],
     queryFn: ({ pageParam = 0 }) => fetchPokemonPage(pageParam, POKEMON_PER_PAGE),
-    getNextPageParam: (lastPage, pages) => {
+    getNextPageParam: (_, pages) => {
+        
       const totalFetched = pages.length * POKEMON_PER_PAGE
       return totalFetched < 1000 ? totalFetched : undefined // Limit to first 1000 Pokemon
     },
